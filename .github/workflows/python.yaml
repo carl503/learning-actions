@@ -35,7 +35,7 @@ jobs:
         env:
           TEST_CLB: ${{ vars.MY_ENV.MY_ENV }}
         shell: bash
-        run: echo "$TEST_CLB ${{ vars.MY_ENV }}"
+        run: echo "${TEST_CLB}"
 
   example_matrix:
     runs-on: ubuntu-latest
