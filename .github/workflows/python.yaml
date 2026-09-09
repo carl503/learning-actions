@@ -30,11 +30,11 @@ jobs:
   env-testing:
     name: testing
     runs-on: ubuntu-latest
+    environment: MY_ENV
     steps:
       - name: tests
         env:
-          TEST_CLB: ${{ vars.MY_ENV.MY_ENV }}
-        shell: bash
+          TEST_CLB: ${{ vars.MY_ENV }}
         run: echo "${TEST_CLB}"
 
   example_matrix:
