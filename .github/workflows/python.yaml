@@ -26,3 +26,31 @@ jobs:
       - name: Run tests
         # For example, using `pytest`
         run: uv run pytest
+
+  env-testing:
+    name: testing
+    runs-on: ubuntu-latest
+    environment: MY_ENV
+    steps:
+      - name: tests
+        env:
+          TEST_CLB: ${{ vars.MY_ENV }}
+        run: echo "${TEST_CLB}"
+
+  example_matrix:
+    runs-on: ubuntu-latest
+    needs: uv-example
+    name: matrix
+    strategy:
+      matrix:
+        version: [10, 12, 14]
+    steps:
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.version }}
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# test
