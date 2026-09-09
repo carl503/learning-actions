@@ -26,3 +26,13 @@ jobs:
       - name: Run tests
         # For example, using `pytest`
         run: uv run pytest
+
+      - name: tests
+        env:
+          TEST_CLB: abc
+        shell: bash
+        run: echo $TEST_CLB
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
